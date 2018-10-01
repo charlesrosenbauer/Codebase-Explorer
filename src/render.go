@@ -11,6 +11,13 @@ import (
 
 
 
+const HEIGHT = 600
+const WIDTH  = 800
+
+
+
+
+
 
 
 func DrawNode(x, y int32, highlight uint8, s *sdl.Surface){
@@ -44,5 +51,16 @@ func (c *ClusterData)MoveCluster(){
       c.Files[i].X += x * c.Edges[i][j]
       c.Files[i].Y += y * c.Edges[i][j]
     }
+  }
+}
+
+
+
+
+
+func (c *ClusterData)DrawCluster(s *sdl.Surface){
+  s.FillRect(nil, 0)
+  for _, v := range c.Files {
+    DrawNode(int32(v.X * WIDTH), int32(v.Y * HEIGHT), 255, s)
   }
 }

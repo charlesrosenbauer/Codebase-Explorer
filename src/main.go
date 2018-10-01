@@ -44,7 +44,7 @@ func main(){
   defer sdl.Quit()
 
 	window, err := sdl.CreateWindow("Codebase Explorer", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED,
-		800, 600, sdl.WINDOW_SHOWN)
+		WIDTH, HEIGHT, sdl.WINDOW_SHOWN)
 	if err != nil {
 		panic(err)
 	}
