@@ -31,6 +31,9 @@ func MapFile(text string, path string) ProgramMap {
     panic(err)
   }
 
+  ret.Wordcts = make(map[string]int)
+  ret.Wordwts = make(map[string]float32)
+
   textlines := strings.Split(text, "\n")
   for i:=0; i < len(textlines); i++ {
     ids := regex.FindAllString(textlines[i], -1)
@@ -151,7 +154,7 @@ func MakeClusterData(maps []ProgramMap) ClusterData {
         ret.Edges[i][j] = 0.0
       }
     }
-    ret.Files[i] = FileData{va.Filepath, rand.Float32(), rand.Float32()}
+    ret.Files[i] = FileData{va.Filepath, 0.5 - rand.Float32(), 0.5 - rand.Float32()}
   }
   return ret
 }

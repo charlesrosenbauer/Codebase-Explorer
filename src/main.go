@@ -56,9 +56,19 @@ func main(){
 	}
 	surface.FillRect(nil, 0)
 
-  for i := 0; i < 60; i++ {
+  maps:= make([]ProgramMap, len(text))
+  for i, txt := range text {
+    maps[i] = MapFile(txt, files[i])
+  }
+
+  //gmap := MakeGlobalMap(maps)
+
+  cdata := MakeClusterData(maps)
+
+  for i := 0; i < 6; i++ {
     window.UpdateSurface()
-    surface.FillRect(nil, uint32(4*i))
-    sdl.Delay(16)
+    cdata.DrawCluster(surface)
+    cdata.MoveCluster(0.01)
+    sdl.Delay(320)
   }
 }
