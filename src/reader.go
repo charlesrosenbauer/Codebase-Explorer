@@ -2,6 +2,7 @@ package main
 
 
 import(
+  "fmt"
   "regexp"
   "math"
   "strings"
@@ -46,6 +47,8 @@ func MapFile(text string, path string) ProgramMap {
       ret.Totalct++
     }
   }
+  ret.GetLocalWeights()
+
   return ret
 }
 
@@ -55,6 +58,7 @@ func MapFile(text string, path string) ProgramMap {
 func (p *ProgramMap)GetLocalWeights(){
   factor := float32(math.Log(float64(p.Totalct)))
   factor *= (factor / float32(p.Totalct))
+  p.Totalwt = 0.0
   for i, v := range p.Wordcts {
     val := float32(v)
 
@@ -62,6 +66,8 @@ func (p *ProgramMap)GetLocalWeights(){
     p.Wordwts[i] = val
     p.Totalwt += val
   }
+
+  fmt.Println(p.Filepath, p.Totalwt)
 }
 
 

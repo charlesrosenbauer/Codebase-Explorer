@@ -65,10 +65,10 @@ func main(){
 
   cdata := MakeClusterData(maps)
 
-  for i := 0; i < 6; i++ {
+  for i := 0; i < 5000; i++ {
     window.UpdateSurface()
     cdata.DrawCluster(surface)
-    cdata.MoveCluster(0.01)
-    sdl.Delay(320)
+    cdata.MoveCluster(0.005)
+    sdl.Delay(16)
   }
 }
