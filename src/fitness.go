@@ -4,6 +4,7 @@ package main
 
 import (
   //"math"
+  "math/rand"
 )
 
 
@@ -33,4 +34,25 @@ func (c *ClusterData) GetFitness() float64 {
       }
     }
     return fitness
+}
+
+
+
+
+// Makes some random small changes to the cluster model. If the fitness is better
+// than the provided value, it updates the cluster model with the changes.
+// Returns a new version of ClusterData, and whether or not the step was made.
+func TryStep(c *ClusterData, fitnessTarget, stepSize float64) (*ClusterData, bool) {
+  ret := *c
+  for _, f := range ret.Files {
+    f.X += float32(stepSize) * (0.5 - rand.Float32())
+    f.Y += float32(stepSize) * (0.5 - rand.Float32())
+  }
+
+  fitness := ret.GetFitness()
+  if fitness > fitnessTarget {
+    return &ret, true
+  }
+
+  return c, false
 }
