@@ -68,7 +68,7 @@ func main(){
   for i := 0; i < 5000; i++ {
     window.UpdateSurface()
     cdata.DrawCluster(surface)
-    cdata.MoveCluster(0.005)
+    //cdata.MoveCluster(0.005)
     sdl.Delay(16)
   }
 }
